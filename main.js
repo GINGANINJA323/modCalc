@@ -18,6 +18,8 @@ main = () => {
       operations.block(readline, main);
     } if (op === 'add') {
       operations.add(readline, main);
+    } if (op === 'page') {
+      operations.page(readline, main);
     } if (op === 'exit') {
       process.exit();
     } else {
