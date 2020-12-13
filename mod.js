@@ -26,6 +26,22 @@ const block = (rl, cb) => {
   });
 }
 
+const page = (rl, cb) => {
+  rl.question('Page table bits: ', ptb => {
+    rl.question('Address space size: ', vass => {
+      if (ptb === '' || vass === '') {
+        console.log('Values incorrect.');
+        cb();
+      }
+        const offset = vass - ptb;
+        const pageAmount = Math.pow(2, ptb);
+        const pageSize = Math.pow(2, offset);
+        console.log(`Page size: ${pageSize} (${pageSize / 1024}KB), page amount: ${pageAmount}`);
+        cb();
+    });
+  });
+}
+
 const calcRoot = (count, values, pr, main) => {
   let c = count;
   const countValues = [];
@@ -96,5 +112,6 @@ module.exports = {
   primitiveRoot,
   mod,
   block,
-  add
+  add,
+  page
 }
