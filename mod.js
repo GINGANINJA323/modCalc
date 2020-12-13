@@ -34,9 +34,9 @@ const page = (rl, cb) => {
         cb();
       }
         const offset = vass - ptb;
-        const pageSize = 2^ptb;
-        const pageAmount = 2^offset
-        console.log(`Page size: ${pageSize}, page amount: ${pageAmount}`);
+        const pageAmount = Math.pow(2, ptb);
+        const pageSize = Math.pow(2, offset);
+        console.log(`Page size: ${pageSize} (${pageSize / 1024}KB), page amount: ${pageAmount}`);
         cb();
     });
   });
