@@ -22,6 +22,8 @@ main = () => {
       operations.page(readline, main);
     } if (op === 'exit') {
       process.exit();
+    } if (op === 'gcd') {
+      operations.gcd(readline, main);
     } else {
       readline.question('Illegal entry. Again? ', choice => {
         if (choice === 'y') {

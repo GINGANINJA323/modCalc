@@ -108,10 +108,30 @@ const add = (rl, cb) => {
   });
 }
 
+const euclid = (a, b, cb) => {
+  console.log(`Running with ${a} and ${b}`);
+  if (b === 0) {
+    console.log(`The greatest common divisor (GCD) is ${a}`);
+    return cb();
+  }
+
+  return euclid(b, a % b, cb);
+}
+
+const gcd = (rl, cb) => {
+  console.log('Euclidean GCD calculator.');
+  rl.question('First value: ', a => {
+    rl.question('Second value: ', b => {
+      euclid(Number(a), Number(b), cb);
+    })
+  })
+}
+
 module.exports = {
   primitiveRoot,
   mod,
   block,
   add,
-  page
+  page,
+  gcd
 }
