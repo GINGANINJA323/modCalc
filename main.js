@@ -24,6 +24,8 @@ main = () => {
       process.exit();
     } if (op === 'gcd') {
       operations.gcd(readline, main);
+    } if (op === 'fraction') {
+      operations.fractionSimp(readline, main);
     } else {
       readline.question('Illegal entry. Again? ', choice => {
         if (choice === 'y') {

@@ -108,23 +108,42 @@ const add = (rl, cb) => {
   });
 }
 
-const euclid = (a, b, cb) => {
-  console.log(`Running with ${a} and ${b}`);
+const euclid = (a, b, cb, printRes) => {
+  if (printRes) {
+    console.log(`Running with ${a} and ${b}`);
+  }
   if (b === 0) {
-    console.log(`The greatest common divisor (GCD) is ${a}`);
-    return cb();
+    if (printRes) {
+      console.log(`The greatest common divisor (GCD) is ${a}`);
+    }
+    return cb(a);
   }
 
-  return euclid(b, a % b, cb);
+  return euclid(b, a % b, cb, printRes);
 }
 
 const gcd = (rl, cb) => {
   console.log('Euclidean GCD calculator.');
   rl.question('First value: ', a => {
     rl.question('Second value: ', b => {
-      euclid(Number(a), Number(b), cb);
+      euclid(Number(a), Number(b), cb, true);
     })
   })
+}
+
+const fractionSimp = (rl, cb) => {
+  console.log('Fraction simplifier.');
+  rl.question('Enumerator: ', n => {
+    rl.question('Denominator: ', d => {
+      euclid(Number(n), Number(d), (div) => {
+        const sN = n / div;
+        const dN = d / div;
+        console.log(`New fraction: \n${sN}\n--\n${dN}`);
+        console.log(` = ${sN / dN}`);
+        cb();
+      })
+    });
+  });
 }
 
 module.exports = {
@@ -133,5 +152,6 @@ module.exports = {
   block,
   add,
   page,
-  gcd
+  gcd,
+  fractionSimp
 }
